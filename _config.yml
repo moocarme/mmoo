@@ -1,5 +1,5 @@
 markdown: redcarpet
-baseurl: '/mmoo'
+baseurl: /mmoo
 # Site settings
 title: Data Scientist
 email: moocarme@gmail.com
