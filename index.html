@@ -20,8 +20,9 @@ $(document).ready(function () {
   window.buildTabsets("TOC");
 });
 </script>
-
-    <meta name="theme-color" content="#2c3e50">
+	<!--<meta name="theme-color" content="#2c3e50">-->
+    
+    <meta name="theme-color" content="#CC0099">
     <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,8 +65,25 @@ $(document).ready(function () {
   ga('create', 'UA-63356566-1', 'auto');
   ga('send', 'pageview');
 
-</script>
 
+
+
+</script>
+<body id="bootstrap-overrides">
+<style type="text/css"> 
+#bootstrap-overrides #portfolio .caption-content {  
+  top: 20%;
+  display: table-cell;
+  vertical-align: middle;
+  }
+</style>
+
+<style>
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}
+</style>
     <body id="page-top" class="index">
        <!-- Navigation -->
     <nav class="navbar navbar-default">
@@ -112,7 +130,7 @@ $(document).ready(function () {
                     <div class="intro-text">
                         <span class="name">Matthew Moocarme</span>
                         <hr class="star-light">
-                        <span class="skills">Data Scientist - something else - something else</span>
+                        <span class="skills">Data Scientist - PhD Physics Candidate - something else</span>
                     </div>
                 </div>
             </div>
@@ -133,9 +151,12 @@ $(document).ready(function () {
                 
                     <div class="col-sm-4 portfolio-item">
                         <a href="/mmoo/riffCode/" class="portfolio-link" data-toggle="modal">
-                            <div class="caption">
-                                <div class="caption-content">
-                                    <i class="fa fa-search-plus fa-3x"></i>
+                            <div class="caption text-center vertical-center-row">
+                                
+                                <div class="caption-content img-centered vertical-center-row">
+                                	<h3>Why does all country music sound the same?</h3>
+                                	<!--<i class="
+                                	  fa fa-search-plus fa-3x"></i>-->
                                 </div>
                             </div>
                             <img src="/mmoo/img/portfolio/cabin.png" class="img-responsive" alt="image-alt">
@@ -145,8 +166,9 @@ $(document).ready(function () {
                     <div class="col-sm-4 portfolio-item">
                         <a href="/mmoo/NY-Lead/" class="portfolio-link" data-toggle="modal">
                             <div class="caption">
-                                <div class="caption-content">
-                                    <i class="fa fa-search-plus fa-3x"></i>
+                                <div class="caption-content text-center">
+                                	<h3>Does the Concentration of Airborne Lead Affect the Number of Complaints due to Lead in NYC?</h3>
+                                    <!--<i class="fa fa-search-plus fa-3x"></i>-->
                                 </div>
                             </div>
                             <img src="/mmoo/img/portfolio/cake.png" class="img-responsive" alt="image-alt">
@@ -157,7 +179,8 @@ $(document).ready(function () {
                         <a href="/mmoo/Vision-Zero/" class="portfolio-link" data-toggle="modal">
                             <div class="caption">
                                 <div class="caption-content">
-                                    <i class="fa fa-search-plus fa-3x"></i>
+                                	<h3>Has Vision Zero Worked?</h3>
+                                    <!--<i class="fa fa-search-plus fa-3x"></i>-->
                                 </div>
                             </div>
                             <img src="/mmoo/img/portfolio/circus.png" class="img-responsive" alt="image-alt">
@@ -168,7 +191,8 @@ $(document).ready(function () {
                         <a href="/mmoo/MapWiki/" class="portfolio-link" data-toggle="modal">
                             <div class="caption">
                                 <div class="caption-content">
-                                    <i class="fa fa-search-plus fa-3x"></i>
+                                	<h3>Mapping the Page Categories of Wikipedia Using Python & SQL </h3>
+                                    <!--<i class="fa fa-search-plus fa-3x"></i>-->
                                 </div>
                             </div>
                             <img src="/mmoo/img/portfolio/game.png" class="img-responsive" alt="image-alt">
@@ -179,7 +203,8 @@ $(document).ready(function () {
                         <a href="/mmoo/AppleStockPred/" class="portfolio-link" data-toggle="modal">
                             <div class="caption">
                                 <div class="caption-content">
-                                    <i class="fa fa-search-plus fa-3x"></i>
+                                	<h3>Using Google trend to Predict Apple Stock Returns</h3>
+                                    <!--<i class="fa fa-search-plus fa-2x"></i>-->
                                 </div>
                             </div>
                             <img src="/mmoo/img/portfolio/appppp.jpg" class="img-responsive" alt="image-alt">
@@ -190,7 +215,8 @@ $(document).ready(function () {
                         <a href="/mmoo/R-Vs-Python-LinRegress/" class="portfolio-link" data-toggle="modal">
                             <div class="caption">
                                 <div class="caption-content">
-                                    <i class="fa fa-search-plus fa-3x"></i>
+                                	<h3>R Vs Python - Linear Regression</h3>
+                                    <!--<i class="fa fa-search-plus fa-3x"></i>-->
                                 </div>
                             </div>
                             <img src="/mmoo/img/portfolio/submarine.png" class="img-responsive" alt="image-alt">

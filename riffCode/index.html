@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
-<meta name="theme-color" content="#2c3e50">
+<meta name="theme-color" content="#990073">
 
 
 <meta name="date" content="2016-06-30" />
@@ -38,7 +38,6 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </script>
 
 
-
 <style type="text/css">
 h1 {
   font-size: 34px;
@@ -64,8 +63,10 @@ h6 {
 .table th:not([align]) {
   text-align: left;
 }
-</style>
 
+
+
+</style>
 
 </head>
 
@@ -144,20 +145,30 @@ $(document).ready(function () {
 
 
 <!-- Custom CSS & Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-    <link rel="stylesheet" href="/mmoo/style.css">
+<link rel="stylesheet" href="/mmoo/style.css">
 
-    <!-- Custom Fonts -->
-    <link rel="stylesheet" href="/mmoo/css/font-awesome/css/font-awesome.min.css">
-    <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+<!-- Custom Fonts -->
+<link rel="stylesheet" href="/mmoo/css/font-awesome/css/font-awesome.min.css">
+<link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
+<body id="bootstrap-overrides">
+<style type="text/css"> 
+#bootstrap-overrides hr.star-light {  
+  border-color: #18BC9C;}
+ #bootstrap-overrides  hr.star-light:after {
+background-color: white;
+color: #2C3E50;}
+</style>
 
 
 
 <div class="fluid-row" id="header">
 </div>
-
 <h1> Why All Does Country Music All Sound the Same?</h1>
+<header>
+    <hr class="star-light">
+</header>
 <h2> March 20th 2016 </h2>
 <h4>Hypothesis</h4>
 <p>I hypothesize that all country music sounds the same becasue many songs all use the same chord progession, whereas many other genres of music have a greater variation in the chord progressions used.</p>
@@ -170,7 +181,7 @@ $(document).ready(function () {
 A python webscraper mines guitar tabluture from the internet, specifically <a href="https://ultimate-guitar.com">ultimate-guitar.com</a> and reads them to obtain the chords used in songs. The python code retrives the chords that users of the site have entered. Because the guitar tablature is user submitted, only 5 star rated tablatures are used in standard tuning, for greatest accuracy. A 5 star rating is achieved when all users of the tablature rate the tab as 5-star. Mining the tablature for data on the various chord progressins played in songs, the end goal would be analyse different genres of music to show that country music shows less variation in the chords and chord progressions used compared to other genres of music.
 </p>
 <p><br></p>
-<h3>Guitar tablature</h3>
+<h3>Guitar tablature Example</h3>
 <div class="panel-group">
       <h2 class="panel-title">
         <a data-toggle="collapse" href="#collapse_gtab"><p>See here</p></a>
