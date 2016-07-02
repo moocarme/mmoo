@@ -157,102 +157,125 @@ $(document).ready(function () {
 <div class="fluid-row" id="header">
 </div>
 
-<h1> Looking at Data-Mined Guitar Tablature to Investigate Why All Country Music Sounds Similar</h1>
+<h1> Why All Does Country Music All Sound the Same?</h1>
 <h2> March 20th 2016 </h2>
 <h4>Hypothesis</h4>
 <p>I hypothesize that all country music sounds the same becasue many songs all use the same chord progession, whereas many other genres of music have a greater variation in the chord progressions used.</p>
 <p>The complete code can be found on github <a href="https://github.com/moocarme/Coding-Samples/tree/master/Python-Webscraping">here</a>.</p>
 <p><br></p>
+<h4>Method</h4>
 <p>A chord progression is the different chords used in songs, as well as the order in which they are used. For example Pearl Jam's 'Elderly woman...' uses a chord progression D C G G for the much of the verse and chorus. Both the notes used and their respective order is needed. The assumption that the guitar plays the characteristic 'sound' of the song and can be infered from the data gained from what the guitar plays.
-
+</p>
+<p>
 A python webscraper mines guitar tabluture from the internet, specifically <a href="https://ultimate-guitar.com">ultimate-guitar.com</a> and reads them to obtain the chords used in songs. The python code retrives the chords that users of the site have entered. Because the guitar tablature is user submitted, only 5 star rated tablatures are used in standard tuning, for greatest accuracy. A 5 star rating is achieved when all users of the tablature rate the tab as 5-star. Mining the tablature for data on the various chord progressins played in songs, the end goal would be analyse different genres of music to show that country music shows less variation in the chords and chord progressions used compared to other genres of music.
 </p>
 <p><br></p>
-<p>Below is an example of typical guitar tablature from ultimate-guitar.com</p>
-<pre class="python"><code>
-Band- Metallica
-Song- TuesdAYS gONE
+<h3>Guitar tablature</h3>
+<div class="panel-group">
+      <h2 class="panel-title">
+        <a data-toggle="collapse" href="#collapse_gtab"><p>See here</p></a>
+      </h2>
+ 
+    <div id="collapse_gtab" class="panel-collapse collapse">
+      
 
-  A5                   E5                   F#5                   D
-      x 0 2 2 x x          0 2 2 x x x          2 4 4 x x x          x x 0 2 3 2
+		<p>Below is an example of typical guitar tablature from ultimate-guitar.com</p>
+		<pre class="python"><code>
+		Band- Metallica
+		Song- TuesdAYS gONE
 
-         Dsus4                Dsus2                  G                   F#m
-      x x 0 2 3 3          x x 0 2 3 0          3 2 0 0 3 3          2 4 4 2 2 2
+		  A5                   E5                   F#5                   D
+		      x 0 2 2 x x          0 2 2 x x x          2 4 4 x x x          x x 0 2 3 2
 
-         GIII
-      3 5 5 4 3 3
+		         Dsus4                Dsus2                  G                   F#m
+		      x x 0 2 3 3          x x 0 2 3 0          3 2 0 0 3 3          2 4 4 2 2 2
 
-Gtr I (Eb Ab Db Gb Bb Eb) - 'acoustic'
-Gtr II (Eb Ab Db Gb Bb Eb) - 'dobro'
-Gtr III (Eb Ab Db Gb Bb Eb) - 'acoustic'
-Gtr IV (Eb Ab Db Gb Bb Eb) - 'acoustic'
+		         GIII
+		      3 5 5 4 3 3
 
- Intro
-  Slowly H.=50
-                   A5                                 E5
- 3/4
-  Gtr I
-                    |           |                      |    ||
-                    /           /                      /    //
+		Gtr I (Eb Ab Db Gb Bb Eb) - 'acoustic'
+		Gtr II (Eb Ab Db Gb Bb Eb) - 'dobro'
+		Gtr III (Eb Ab Db Gb Bb Eb) - 'acoustic'
+		Gtr IV (Eb Ab Db Gb Bb Eb) - 'acoustic'
 
-  Gtr II
-                                                       ~~
-|-------|-------||-----------|----------------------|------------|
-|-------|-------||-14--------|-14------14b16r=(14)--|-12---------|
-|-------|-------||-----------|----------------------|------------|
-|-------|-------||-----------|----------------------|------------|
-|-------|-------||-----------|----------------------|------------|
-|-------|-------||-----------|----------------------|------------|
-|
-| Gtr III
-|                                                      ~~
-|-------|-------||-----------|----------------------|------------|
-|-------|-------||-----------|----------------------|------------|
-|-------|-------||-11--------|-11b13r=(11)----------|--9---------|
-|-------|-------||-----------|----------------------|------------|
-|-------|-------||-----------|----------------------|------------|
-|-------|-------||-----------|----------------------|------------|
-|
-| Gtr IV
-|-------|-------||-----------|----------------------|------------|
-|-------|-------||-----------|--2-------------------|------------|
-|-------|-------||--------2--|----------2-----------|------------|
-|-------|-------||-----2-----|------------------2---|--------2---|
-|-------|-------||--0--------|----------------------|-----2------|
-|-------|-------||-----------|----------------------|--0---------|
+		 Intro
+		  Slowly H.=50
+		                   A5                                 E5
+		 3/4
+		  Gtr I
+		                    |           |                      |    ||
+		                    /           /                      /    //
+
+		  Gtr II
+		                                                       ~~
+		|-------|-------||-----------|----------------------|------------|
+		|-------|-------||-14--------|-14------14b16r=(14)--|-12---------|
+		|-------|-------||-----------|----------------------|------------|
+		|-------|-------||-----------|----------------------|------------|
+		|-------|-------||-----------|----------------------|------------|
+		|-------|-------||-----------|----------------------|------------|
+		|
+		| Gtr III
+		|                                                      ~~
+		|-------|-------||-----------|----------------------|------------|
+		|-------|-------||-----------|----------------------|------------|
+		|-------|-------||-11--------|-11b13r=(11)----------|--9---------|
+		|-------|-------||-----------|----------------------|------------|
+		|-------|-------||-----------|----------------------|------------|
+		|-------|-------||-----------|----------------------|------------|
+		|
+		| Gtr IV
+		|-------|-------||-----------|----------------------|------------|
+		|-------|-------||-----------|--2-------------------|------------|
+		|-------|-------||--------2--|----------2-----------|------------|
+		|-------|-------||-----2-----|------------------2---|--------2---|
+		|-------|-------||--0--------|----------------------|-----2------|
+		|-------|-------||-----------|----------------------|--0---------|
 
 
-                    F#5                                   D
-  |        |  |      |         ||    |        |     |     |  | || |
-  /        /  /      /         //    /        /     /     /  / // /
+		                    F#5                                   D
+		  |        |  |      |         ||    |        |     |     |  | || |
+		  /        /  /      /         //    /        /     /     /  / // /
 
-                        ~~~~~~~                           ~
-|-----------------|----------------|--------------------|----------|
-|----12b13r=(12)--|-12-10-(10)-----|----10b12r====(10)--|-7--------|
-|-----------------|----------------|--------------------|----------|
-|-----------------|----------------|--------------------|----------|
-|-----------------|----------------|--------------------|----------|
-|-----------------|----------------|--------------------|----------|
-|
-|                    ~~                                   ~
-|-----------------|----------------|--------------------|----------|
-|-----------------|----------------|--------------------|----------|
-|-----------------|----------------|--------------------|----------|
-|-----9b10r==(9)--|--7-------------|----------7b9r=(7)--|-4--------|
-|-----------------|----------------|--------------------|----------|
-|-----------------|----------------|--------------------|----------|
-|
-|                    PM---------------------------|
-|-----------------|----------------|--------------------|----------|
-|-----------------|----------------|--------------------|-------3--|
-|-1---------------|----------------|-2------------------|----2-----|
-|-----2-----------|-------------4--|-----4--------------|-0--------|
-|-------------2---|---------4------|----------------4---|----------|
-|-----------------|--2-------------|--------------------|----------|
+		                        ~~~~~~~                           ~
+		|-----------------|----------------|--------------------|----------|
+		|----12b13r=(12)--|-12-10-(10)-----|----10b12r====(10)--|-7--------|
+		|-----------------|----------------|--------------------|----------|
+		|-----------------|----------------|--------------------|----------|
+		|-----------------|----------------|--------------------|----------|
+		|-----------------|----------------|--------------------|----------|
+		|
+		|                    ~~                                   ~
+		|-----------------|----------------|--------------------|----------|
+		|-----------------|----------------|--------------------|----------|
+		|-----------------|----------------|--------------------|----------|
+		|-----9b10r==(9)--|--7-------------|----------7b9r=(7)--|-4--------|
+		|-----------------|----------------|--------------------|----------|
+		|-----------------|----------------|--------------------|----------|
+		|
+		|                    PM---------------------------|
+		|-----------------|----------------|--------------------|----------|
+		|-----------------|----------------|--------------------|-------3--|
+		|-1---------------|----------------|-2------------------|----2-----|
+		|-----2-----------|-------------4--|-----4--------------|-0--------|
+		|-------------2---|---------4------|----------------4---|----------|
+		|-----------------|--2-------------|--------------------|----------|
 
-</code></pre>
+		</code></pre>
+	</div>
+</div>
 <p>We can see that the there is a lot of extraneous data, but the chord progression we wold look for is located above the lines beginning ``Gtr I", and the chord progression is A5 E5 F#5 D, though in this case the numbers after the chord are not needed to obtain the chord progression, so can be dropped, making the chord progression A E F# D</p>
 <p><br></p>
+
+<h3>Python script</h3>
+<div class="panel-group">
+      <h2 class="panel-title">
+        <a data-toggle="collapse" href="#collapse_pythonscript"><p>See here</p></a>
+      </h2>
+ 
+    <div id="collapse_pythonscript" class="panel-collapse collapse">
+      
+
 <div id="r" class="section level2">
 <pre class="python"><code>
 # = Import packages
@@ -394,22 +417,26 @@ plt.bar(range(len(newChordProgVals[:res])), newChordProgVals[:res], align='cente
 plt.xticks(range(len(newChordProgVals[:res])), newChordProg[:res], rotation = 60)
 plt.draw()</code>
 </div>
+</div>
+</div>
+<img src = "/mmoo/img/riffcode_figs/CountryChordProgression.png">
+<p> <br> We can see that the many of the chord progressions used in country music include the chords G, C, and D.</p>
+<p> If we look at the count of each chords, i.e., in all the songs count the total instance of particluar chords.</p>
+<img src = "/mmoo/img/riffcode_figs/CountryChords.png">
 <p>
-We find that Chords involving variations of G, C, and D are very popular in country music and those three chords account for about 45% of the total chords, if we look at the top 8 chords (G, C, D, A, F, Am, Em, E) they account for almost 75%. For context there are over 800 various chord combinations (see: https://tabs.ultimate-guitar.com/m/misc/all_the_chords_crd.htm). So we can see how these 8 chords and their various combinations can lead to music that may sound similar.</p>
-<p>
-Compared to other genres such as Jazz, which incidentally has the same top 3 chords, in the same order, G-C-D yet only accounts for 37% of total chord usage. If we look to the top 8 chords, which again are the same chords, yet in a different order they account for 62% of all chords used.</p>
+We find that Chords involving variations of G, C, and D are very popular in country music and those three chords account for about 45% of the total chords, if we look at the top 8 chords (G, C, D, A, F, Am, Em, E) they account for almost 75%. For context there are over 800 various chord combinations (see: <a href = https://tabs.ultimate-guitar.com/m/misc/all_the_chords_crd.htm>here</a>). So we can see how these 8 chords and their various combinations can lead to music that may sound similar.</p>
+<!--<p>
+Compared to other genres such as Jazz, which incidentally has the same top 3 chords, in the same order, G-C-D yet only accounts for 37% of total chord usage. If we look to the top 8 chords, which again are the same chords, yet in a different order they account for 62% of all chords used.</p> -->
 <h4>Discussion</h4>
 <p>
-Another issue is that ultimate-guitar.com only allows 500 search results, yet there are over 20,000 5-star rated chord tabs for some of the genres, separating by sub genre, or even by artist may lead to a greater number of tabs to be processed and so trends may become clearer.</p>
+One issueI came across when scraping the website is that ultimate-guitar.com only allows 500 search results, yet there are over 20,000 5-star rated chord tabs for some of the genres, separating by sub genre, or even by artist may lead to a greater number of tabs to be processed and so trends may become clearer. This 500 search limit is probably for the user expereince, since I'm assuming no one want to search manually through 20,000 results. 500 a happy medium that is small enough to search manually through, yet large enough to provide good and varied results in the search.</p>
 <p>
 Next it would insightful to look up find out why these same top 3, and top 8 chords are being used, as there may be an underlying trend I am unaware of. Also worth invetigating is whether the use of chords outside the top 8 are key in varying the characteristic sound that might explain why all country music sounds similar. This could be done with statistical analysis which would be the topic of further work. Also other features of the songs could be analysed separately using the echonest API, alternatively I could develop my own feature analyses using machine learning methods. </p>
 
 
 <p><br></p>
 
-<h2>Conclusion</h2>
-<p>
-Add conclusion
-</p>
+ <h2>Conclusion</h2>
+ <p>Add conclusion</p>
 </body>
 </html>

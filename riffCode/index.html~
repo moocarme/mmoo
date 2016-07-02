@@ -157,7 +157,7 @@ $(document).ready(function () {
 <div class="fluid-row" id="header">
 </div>
 
-<h1> Looking at Data-Mined Guitar Tablature to Investigate Why All Country Music Sounds Similar</h1>
+<h1> Why All Does Country Music All Sound the Same</h1>
 <h2> March 20th 2016 </h2>
 <h4>Hypothesis</h4>
 <p>I hypothesize that all country music sounds the same becasue many songs all use the same chord progession, whereas many other genres of music have a greater variation in the chord progressions used.</p>
@@ -251,7 +251,7 @@ Gtr IV (Eb Ab Db Gb Bb Eb) - 'acoustic'
 |-----------------|--2-------------|--------------------|----------|
 
 </code></pre>
-<p>We can see that the </p>
+<p>We can see that the there is a lot of extraneous data, but the chord progression we wold look for is located above the lines beginning ``Gtr I", and the chord progression is A5 E5 F#5 D, though in this case the numbers after the chord are not needed to obtain the chord progression, so can be dropped, making the chord progression A E F# D</p>
 <p><br></p>
 <div id="r" class="section level2">
 <pre class="python"><code>
