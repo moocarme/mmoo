@@ -95,7 +95,7 @@ h6 {
                         <a href="/mmoo/#about">About</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/mmoo/img/Resume_MMoocarme.pdf">Resume</a>
+                        <a href="/mmoo/Resume/">Resume</a>
                     </li>
                     <li class="page-scroll">
                         <a href="/mmoo/#portfolio">Portfolio</a>
@@ -433,6 +433,52 @@ plt.draw()</code>
 </div>
 </div>
 </div>
+<script src="/mmoo/node_modules/chart.js/dist/Chart.js"></script>
+<script src="/mmoo/js/jquery-1.11.0.js"></script>
+
+<script>
+    var myChart = new Chart({...})
+</script>
+<canvas id="myChart" width="400" height="400"></canvas>
+<script>
+var ctx = document.getElementById("myChart");
+var randomColorFactor = function() {
+            return Math.round(Math.random() * 255);
+        };
+var randomColor = function() {
+            return 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',.7)';
+        };
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Im', 'Like', 'Dont', 'Know', 'Got', 'Love', 'One', 'Go', 'Little', 'Well', 'Get', 'Aint', 'Gonna', 'Never', 'Back', 'Way', 'Time', 'Take', 'Said', 'See', 'Life', 'Ive', 'Yeah', 'Right', 'Baby', 'Good', 'Cant', 'Say', 'Night', 'Youre', 'Cause', 'Still', 'Let', 'Ill', 'Think', 'Theres', 'Come', 'Make', 'Oh', 'Man'],
+        datasets: [{
+            label: 'Count',
+            data: [603, 566, 486, 461, 397, 378, 345, 337, 291, 289, 287, 272, 262, 260, 255, 252, 252, 237, 230, 228, 226, 220, 217, 216, 212, 200, 192, 191, 191, 187, 187, 175, 173, 173, 171, 171, 171, 167, 166, 166],
+            backgroundColor: 'rgba(24, 188, 156, 0.6)',
+            borderColor: 'rgba(9, 74, 61, 1)',
+            borderWidth: 2
+        }]
+    },
+    options: {
+    	title: {
+            display: true,
+            text: 'Top 40 Lyrics',
+            fontSize: 22
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+
+
 <img src = "/mmoo/img/riffcode_figs/CountryChordProgression.png">
 <p> <br> We can see that the many of the chord progressions used in country music include the chords G, C, and D.</p>
 <p> If we look at the count of each chords, i.e., in all the songs count the total instance of particluar chords.</p>
