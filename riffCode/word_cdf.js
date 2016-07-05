@@ -1665,7 +1665,8 @@ var myChart = new Chart(ctx, {
         0.99995701,  0.99997851,  1.        ],
         backgroundColor: 'rgba(24, 188, 156, 0.3)',
             borderColor: 'rgba(9, 74, 61, 1)',
-            borderWidth: 1
+            borderWidth: 1,
+            pointRadius: 0
         }]
     },
     options: {

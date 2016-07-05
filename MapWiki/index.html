@@ -39,8 +39,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 <!-- Icons -->
-<link rel="favicon-144-precomposed"  href="/mmoo/img/bar-chart.png">
-<link rel="shortcut icon" href="/mmoo/img/bar-chart.png">
+<link rel="favicon-144-precomposed"  href="/mmoo/img/profile.png">
+<link rel="shortcut icon" href="/mmoo/img/profile.png">
 
 
 <style type="text/css">
@@ -172,14 +172,15 @@ color: #2C3E50;}
     <hr class="star-light">
 </header>
 <h2> April 19th 2016 </h2>
+<p><br></p>	
 <h4>Hypothesis</h4>
-<p>I hypothesize that the links between the categories of the webpages in wikipedia will show the connections between various categories and may reveal origins of fields that my be unintuitive.</p>
+<p>I hypothesize that the links between the categories of the webpages in wikipedia will show the connections between various categories and may reveal origins of fields that may be unintuitive.</p>
 <p>The complete code can be found on github <a href="https://github.com/moocarme/Coding-Samples/tree/master/Python-with-SQL">here</a>.</p>
 <p><br></p>
 <h4>Method</h4>
 <p>
-To solve this problem I separate the problem in 2. 
-To begin, I create a web-scraper that starts at either a page from a sql database, or begins at the wikipedia homepage. The home page has a variation of different links that change every day so it is a good place to start to ensure a variation of wikipedia pages of different category. The web-scraper iterates through the links on a wikipedia page and stores them in a sqlite database. </p>
+To solve this problem I separate the problem into 2. 
+To begin, I create a web-scraper that starts at either a page from a sqlite database, or begins at the wikipedia homepage. The home page has a variation of different links that change every day so it is a good place to start to ensure a variation of wikipedia pages of different categories. The web-scraper iterates through the links on a wikipedia page and stores them in a sqlite database. </p>
 
 <p>Once it has stored all the links in a given page, it moves to the next page in the database. Obviously this can go on ad infinitum so the pages are limited (to say 60) at a time, so we don't anger the internet service provider. The ultimate goal would be a databse of all the links in wikipedia.</p>
 <p><br></p>
@@ -398,5 +399,35 @@ show()
 <p>Though the web scraper works very well and the database of hyperlinks for webpages is populated very quickly, even for 60 links (plus all the webpages within each) the network graph is very crowded. Plotting the network on a map may not be the best way to visualize the interconnections between the webpages of wikipedia. </p>
 <p>A better approach would be bin the webpages in categories and plot the correlations between webpage categories in a 2D histogram. Using a 2D histogram, although we lose the information of the name of the webpage, as the network plot shows, a much greater number of pages could be shown on the same graph. For each entry in the bins of the 2D histogram, would represent a hyperlink from one category (shown on the x-axis), to another catgory (shown on the y-axis). <a href="https://plot.ly/python/2D-Histogram/">plot.ly</a> have a number of good examples, and would make a good project for another time.
 </p>
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visible-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+</div>
+<style type="text/css">
+.main-container-new {
+  width: 100%;
+  }
+</style>
+<div class="main-container-new">
+<footer class="text-center">
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h4>Matthew Moocarme - moocarme@gmail.com</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
 </body>
 </html>
