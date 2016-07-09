@@ -172,7 +172,7 @@ color: #2C3E50;}
 <header>
     <hr class="star-light">
 </header>
-<h2> July 2nd 2016 </h2>
+
 <p><br></p>	
 <h4>Hypothesis</h4>
 <p>I hypothesize that all country music sounds the same because of similiarities in the components of songs. Specifically, because many country music songs are composed with vocals and guitar, the way the guitar is played and the kinds of lyrics used in the songs may be key components in determining whether or not all country music does sound similar. The way the guitar is played can be determined by the chord progression, and I hypothesize that many country songs all use the same chord progession, whereas in other genres of music, there will be a greater variation of the chord progressions used in songs. I also suspect that the lyrics have some similarity in the words used and a naive-Bayes analysis may be suitable.</p>
@@ -901,6 +901,67 @@ print(mySong)
 <h2>Conclusion</h2>
 	<p>To conclude, we have seen that while chord progressions show as much variation as other genres, there is significantly less variation in the actual chords used in the chord progressions that may lead to the reason I believe that many country music sounds similar. Also, the language used in country music has little variation and the theme of the songs is also similar, and generated lyrics, if we take grammar out, is pretty convincing, and subscribes to the successful <i>"formula"</i> that has dominated country music.</p>
 	<p>In the end it's not just me that thinks all country music sounds the same, as Buzzfeed <a href="https://www.buzzfeed.com/maycie/this-video-proves-that-all-country-music-sounds-the-same?utm_term=.sl3kkr2QA#.cr5gg4ERe">reports</a>, song writer Gregory Todd <a href="https://www.youtube.com/channel/UCviDRYUvXRn7m9UrEx_nnVg">shows</a> that different country songs, from differnt artists, can be mixed the result can be seemless. </p>
+	<div class="text-center">
+<nav class="navbar navbar-custom">
+    	<div class="img-centered">
+    		 <div class="container" >
+                <ul class="nav navbar-nav navbar-left">
+                    <a class="navbar-brand" href="https://github.com/moocarme/Coding-Samples/tree/master/Python-Webscraping"><h2>Source Code</h2>   </a>
+                </ul>
+            </div>
+    </div>
+</nav>
+
+<head>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('number', 'x');
+        data.addColumn('number', 'values');
+        data.addColumn({id:'i0', type:'number', role:'interval'});
+        data.addColumn({id:'i1', type:'number', role:'interval'});
+        data.addColumn({id:'i2', type:'number', role:'interval'});
+        data.addColumn({id:'i2', type:'number', role:'interval'});
+        data.addColumn({id:'i2', type:'number', role:'interval'});
+        data.addColumn({id:'i2', type:'number', role:'interval'});
+  
+        data.addRows([
+            [1, 100, 90, 110, 85, 96, 104, 120],
+            [2, 120, 95, 130, 90, 113, 124, 140],
+            [9, 130, 105, 140, 100, 117, 133, 139],
+            [4, 90, 85, 95, 85, 88, 92, 95],
+            [5, 70, 74, 63, 67, 69, 70, 72],
+            [6, 30, 39, 22, 21, 28, 34, 40],
+            [7, 80, 77, 83, 70, 77, 85, 90],
+            [8, 100, 90, 110, 85, 95, 102, 110]]);
+  
+        // The intervals data as narrow lines (useful for showing raw source data)
+        var options_lines = {
+            title: 'Line intervals, default',
+            curveType: 'function',
+            lineWidth: 4,
+            intervals: { 'style':'area' },
+            legend: 'none'
+        };
+  
+        var chart_lines = new google.visualization.LineChart(document.getElementById('chart_lines'));
+        chart_lines.draw(data, options_lines);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_lines" style="width: 900px; height: 500px;"></div>
+  </body>
+
+
+
+
+
+</div>
 <p><br></p>
 <p><br></p>
 <p><br></p>
