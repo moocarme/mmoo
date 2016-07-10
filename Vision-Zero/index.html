@@ -308,7 +308,7 @@ df_test  &lt;- tidy.VZ3[-(1:dataPartition),]</code></pre>
 <pre class = 'r'><code>RMSE(predict.lm(fit.mvlm, df_test), tidy.VZ3$Total.Counts[-(1:dataPartition)])
 </code></pre>
 <pre><code>[1] 34.37359</code></pre><p><br></p>
-<p>The root mean squared error (RMSE) is quite high on the test set, since the average number of injuries per day is 119. This is liely due to overfitting of the data, due to the high number of variables.</p>
+<p>The root mean squared error (RMSE) is quite high on the test set, since the average number of injuries per day is 119. This is likely due to overfitting of the data, due to the high number of variables.</p>
 <div id="time-series-analysis" class="section level2">
 <h2>Time series analysis</h2>
 <p><br></p>
@@ -359,6 +359,17 @@ plot.forecast(TCFutForecasts)</code></pre>
 <p>From the time series analysis we have confirmed the analysis performed in Tableau, and the thesis of this project Vision Zero has been ineffective in reducing the number of injuries in New York City. Moreover in this recent analysis we have examined the seasonal trends in the data using a Holts-Winter Method, whereas mulitivariate linear regression did not perform that well. We have shown the the number of persons injured is dominated by seasonal and random data, and the underlying trend is fairly constant, which agrees with our linear regression model. The Holts-Winter method is useful because it splits the data into interpretable components and those underlying and seasonal trends can be analysed separately. </p>
 <p>Ultimately the methods used here may be applied in many disciplines which display seasonal time-series data, such as business sales trends, weather predictions, or stock market analysis, and is useful for providing an interpretable decomposition of the data at hand.</p>
 
+<div class="text-center">
+<nav class="navbar navbar-custom">
+    	<div class="img-centered">
+    		 <div class="container" >
+                <ul class="nav navbar-nav navbar-left">
+                    <a class="navbar-brand" href="https://github.com/moocarme/VisionZero_tableau"><h2>Source Code</h2>   </a>
+                </ul>
+            </div>
+    </div>
+</nav>
+</div>
 </div>
 
 <script>
