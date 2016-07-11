@@ -280,7 +280,7 @@ A python webscraper mines guitar tabluture from the internet, specifically <a hr
 	</div>
 </div>
 <p>The above example is quite typical of the user-submitted guitar tablature. We can see that the there is a lot of extraneous data, but the chord progression we wold look for is located above the lines beginning "Gtr I", and the chord progression is A5 E5 F#5 D.</p>
-<p>The python webscraper built goes through all the tabs of a particular genre and grabs all the chords played in the song. The chord progression is obtained by simply finding the 4-chord combination that is most common. This chord progression is then appended to a list. Once the list of all chord progressions is obtained, the list is sorted and plotted. A cumulative distribution is also obtained from the sorted list and is useful for determining global variation.
+<p>The python webscraper built goes through all the tabs of a particular genre and grabs all the chords played in the song. The chord progression is obtained by simply finding the 4-chord combination that is most common. This chord progression is then added to an SQL database, along with the artist name, song title genre and subgenre. An example of sub-genre to a genre is bluegrass, which is a sub-genre to country. This relationship was taken from exploring how <a href="https://www.ultimate-guitar.com/">ultimate-guitar.com</a> specifies. Once database of all the chord progressions is obtained, a subsection can be queried from the list, i.e. accouding to subgenre, and it is sorted and plotted. A cumulative distribution is also obtained from the sorted list and is useful for determining global variation.
 <p><br></p>
 
 <h3>Python script - Chords Webscraper</h3>
@@ -297,6 +297,7 @@ A python webscraper mines guitar tabluture from the internet, specifically <a hr
 """
 Created on Sun Mar 20 12:12:07 2016
 Updates on Sun Apr 17
+Added SQL database on July 10th
 
 @author: matt
 """
@@ -304,23 +305,11 @@ Updates on Sun Apr 17
 import requests
 from lxml import html
 from lxml.etree import tostring
-import matplotlib.pyplot as plt
-import numpy as np
 import sqlite3
 import collections
 import re
 
 # = Helper Functions =========================================================
-
-def getTab(url):
-    '''
-    Function to get tab from a webpage in str format
-    '''
-    webPage = requests.get(url)
-    webTree= html.fromstring(webPage.content)
-    tabXpath = '//*[@id="cont"]/pre[2]/text()'
-    tab = webTree.xpath(tabXpath)
-    return tab
 
 def removeTags(string):
     '''
@@ -369,18 +358,6 @@ def getChordsArtistTrack(url):
     Chords = getChordsList(webTree)    
     return Artist, Track, Chords 
 
-def getBandTree(band, page):
-    '''
-    Function to get xml tree given the band name
-    '''
-    if type(page) == int:
-        page = str(page)
-    theURL = 'https://www.ultimate-guitar.com/search.php?band_name=' + band + \
-        '&type%5B2%5D=300&type2%5B0%5D=40000&rating%5B4%5D=5&tuning%5Bstandard%5D=standard&page=' \
-        + page +'&view_state=advanced&tab_type_group=text&app_name=ugt&order=myweight'
-    pageBand = requests.get(theURL)
-    return html.fromstring(pageBand.content)
-
 def getGenreTree(genrekey, page):
     '''
     Function to get xml tree given the genre
@@ -394,21 +371,6 @@ def getGenreTree(genrekey, page):
     pageBand = requests.get(theURL)
     return html.fromstring(pageBand.content)
     
-def sortAndCount(myList):
-    '''
-    Function sort and count items in a list
-    '''    
-    list2dictCount = dict((x, myList.count(x)) for x in myList)
-    sortedDictCount = sorted(list2dictCount.items(), key = lambda x:(x[1], x[0]), reverse= True)
-    sortedDictCountVal = [x[1] for x in sortedDictCount]
-    sortedDictCountKey = [x[0] for x in sortedDictCount]
-    return sortedDictCount, sortedDictCountVal, sortedDictCountKey
-
-def stringShift(string, shift):
-    '''
-    Function to circshift a string
-    '''    
-    return string[shift:] + string[:shift]
 
 def getChordProg(chordList, progLen = 4):
     '''
@@ -445,7 +407,7 @@ def getGenreDict():
     return GenreDict
 # ============================================================================
 
-conn = sqlite3.connect('chordProgdb.sqlite')
+conn = sqlite3.connect('chordProgdb2.sqlite')
 cur = conn.cursor()
 cur.executescript('''
 /*
@@ -486,9 +448,9 @@ CREATE TABLE Song (
 */
 ''')
 
-page = '1' # start at page 1, in str format as will be added to html str
 
 allGenresDict = getGenreDict()
+#to find all genres: allGenresDict.keys()
 mainGenre = 'Country'
 genresDict = allGenresDict[mainGenre]
 
@@ -496,6 +458,8 @@ cur.execute('''INSERT OR IGNORE INTO Genre (name)
     VALUES ( ? )''', (mainGenre, ) )
 cur.execute('SELECT id FROM Genre WHERE name = ? ', (mainGenre, ))
 main_genre_id = cur.fetchone()[0]   
+
+page = '1' # start at page 1, in str format as will be added to html str
 
 for genre, genrekey in genresDict.iteritems():
     
@@ -528,15 +492,9 @@ for genre, genrekey in genresDict.iteritems():
          
     
     progLen = 4
-    
-    # = Initialize chords list and add chords from the links
-    myChords = []
-    chordProgs = []
-    j = 0
     for i in songLinks:
         Artist, Song, Chords = getChordsArtistTrack(i)
         chordProg = getChordProg(Chords)
-        chordProgs.append(chordProg)
         
         cur.execute('''INSERT OR IGNORE INTO Artist (name) 
             VALUES ( ? )''', ( Artist, ) )
@@ -549,34 +507,79 @@ for genre, genrekey in genresDict.iteritems():
         chordProg_id = cur.fetchone()[0]
         
         cur.execute('''INSERT OR REPLACE INTO Song
-            (title, artist_id, subgenre_id, chordProg_id) 
-            VALUES ( ?, ?, ?, ? )''', 
-            ( Song, artist_id, subgenre_id, chordProg, ) )
+            (title, artist_id, genre_id, subgenre_id, chordProg_id) 
+            VALUES ( ?, ?, ?, ?, ? )''', 
+            ( Song, artist_id, main_genre_id, subgenre_id, chordProg_id, ) )
         conn.commit()
-    j = j + 1
     
-# = Join all lists
-chordsTotal = []
-for i in range(len(myChords)):
-    chordsTotal = chordsTotal + myChords[i]
 
-# = Sort and count individual chords from the lists
-sortedChordsDict, sortedChordsDictVal, sortedChordsDictKey = sortAndCount(chordsTotal)
-sumChords = float(sum(sortedChordsDictVal))
-fracSortedChordsDictVal = [i/sumChords*100 for i in sortedChordsDictVal]
-
-# = Plot individual chords in bar chart
-plt.figure(5); plt.clf(); res = 20
-plt.bar(range(res), fracSortedChordsDictVal[:res], align='center')
-plt.xticks(range(res), sortedChordsDictKey[:res], rotation = 60)
-plt.xlabel('Chord'); plt.ylabel('Usage (%)')
-plt.draw()
-
-plt.figure(6); plt.clf()
-plt.plot(range(len(fracSortedChordsDictVal))+1, np.cumsum(fracSortedChordsDictVal)/sum(fracSortedChordsDictVal))</code>
+</code>
 </div>
 </div>
 </div>
+<p><br></p>
+<h3>Database Entity Relationship Diagram</h3>
+<div class="panel-group">
+      <h2 class="panel-title">
+        <a data-toggle="collapse" href="#collapse_ERD"><p>See here</p></a>
+      </h2>
+ 
+    <div id="collapse_ERD" class="panel-collapse collapse">
+      
+
+<div id="r" class="section level2">
+<img class="img-responsive" src="/mmoo/img/riffcode_figs/dbschema.png" alt=""  height="500" width="500">
+
+
+</div>
+</div>
+</div>
+<p><br></p>
+<h3>SQL Query Example</h3>
+<h4>Accessing top 10 most frequent Americana chords</h4>
+<div class="panel-group">
+      <h2 class="panel-title">
+        <a data-toggle="collapse" href="#collapse_getSQL"><p>See here</p></a>
+      </h2>
+ 
+    <div id="collapse_getSQL" class="panel-collapse collapse">
+      
+
+<div id="r" class="section level2">
+<pre class="python"><code># -*- coding: utf-8 -*-
+"""
+Spyder Editor
+
+Created on July 10th
+"""
+
+import sqlite3
+conn = sqlite3.connect('chordProgdb2.sqlite')
+cur = conn.cursor()
+
+cur.execute('''
+SELECT chord.prog, COUNT(*)
+FROM Song AS master
+LEFT JOIN Genre AS subgenre_tbl ON subgenre_tbl.id = master.subgenre_id
+LEFT JOIN Genre ON genre.id = master.genre_id
+LEFT JOIN ChordProg AS chord ON chord.id = master.chordProg_id
+WHERE subgenre_tbl.name = 'Americana'
+GROUP BY chord.prog
+ORDER BY COUNT(*) DESC
+LIMIT 11
+;
+''')
+
+top10Americana= cur.fetchall()
+conn.commit
+print(list(top10Americana))</code></pre>
+<pre><code>[(u'DGDG', 7), (u'CGAmC', 6), (u'GCGC', 6), (u'GEmGEm', 6), (u'B7EAE', 5), (u'CFCF', 5), (u'EEEE', 5), (u'DADA', 4), (u'DEmCG', 4), (u'DGCG', 4)]</code></pre>
+</div>
+</div>
+</div>
+<p><br></p>
+<p>Though the data is not very big in size it may be a good question to ask why the data is even in a SQL database in the first place, since the total data is only a few megabytes, and will easily fit in memory. My reason is that it is a good habit I have developed, to load, save, and access SQL tables in databases. Moreover, adding to the database can easily be done and is standaradized using the entity relationship diagram (ERD), data can be added from other data sources, and is the database can be incorporated to other projects easily. </p>
+<p><br></p>
 <script src="/mmoo/node_modules/chart.js/dist/Chart.js"></script>
 <script src="/mmoo/js/jquery-1.11.0.js"></script>
 
